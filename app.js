@@ -3,6 +3,13 @@ const hour = document.querySelector(".hour");
 const minute = document.querySelector(".minute");
 const second = document.querySelector(".second");
 
+const newDay = document.querySelector("#day")
+const newMonth = document.querySelector("#month")
+const newYear = document.querySelector("#year")
+const btnStart = document.querySelector(".start")
+
+
+
 let birthday = new Date("February 23, 2023 09:00:00");
 
 let interval;
@@ -15,7 +22,6 @@ let diffSecond;
 const zeroNeed = (numb) => {
     return (numb <= 9) ? '0' + numb : numb 
 }
-
 
 const timeCount = () => {
   //diifferences 
@@ -39,3 +45,10 @@ const countDate = () => {
 };
 
 countDate();
+
+const changeDate = () => {
+    birthday = new Date(`${newYear.value}, ${newMonth.value}, ${newDay.value}`)
+    countDate();
+}
+
+btnStart.addEventListener("click", changeDate)
