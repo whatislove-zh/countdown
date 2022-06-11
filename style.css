@@ -44,6 +44,36 @@
     font-size: 25px;
 }
 
+input{
+    background: none;
+    border: none;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+#day{
+    width: 35px;
+    margin-left: 10px;
+}
+
+#year{
+    width: 47px;
+}
+/*убираю стрелки из инпута*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.start{
+    background: none;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 25px;
+    width: 50px;
+    margin-left: 30px;
+}
+
 
 
 
