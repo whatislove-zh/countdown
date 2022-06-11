@@ -13,11 +13,17 @@
   </head>
   <body>
     <div class="app">
-
-      <div class="head">Countdown to my birthday or whatever:</div>
+      <div class="head">
+        Countdown to my birthday, but <div> you can change it:
+        <span>
+          <input type="number" placeholder="day" id="day" min="1" max="31" /> /
+          <input type="number" placeholder="month" id="month" min="1" max="12" /> /
+          <input type="number" placeholder="year" id="year" min="1900" max="3000" />
+          <button class="start">Count</button>
+        </span></div>
+      </div>
 
       <div class="timeContainer">
-
         <div class="timeBlock">
           <div class="day time">00</div>
           <div class="timeName">DAYS</div>
@@ -37,7 +43,6 @@
           <div class="second time">00</div>
           <div class="timeName">SECOND</div>
         </div>
-
       </div>
     </div>
 
