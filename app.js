@@ -1,3 +1,4 @@
+const year = document.querySelector(".year")
 const day = document.querySelector(".day");
 const hour = document.querySelector(".hour");
 const minute = document.querySelector(".minute");
@@ -9,11 +10,12 @@ const newYear = document.querySelector("#year")
 const btnStart = document.querySelector(".start")
 
 
-
+let currentDate = new Date()
 let birthday = new Date("February 23, 2023 09:00:00");
 
 let interval;
 
+let diffYear;
 let diffDay;
 let diffHour;
 let diffMinute;
@@ -25,14 +27,24 @@ const zeroNeed = (numb) => {
 
 const timeCount = () => {
   //diifferences 
-  let diff = birthday - new Date();
+  let diff
+
+  if (birthday > new Date){
+    diff = birthday - new Date();
+  } else {
+    diff = new Date - birthday
+  }
+
+  
   //time count
-  diffDay = Math.floor(diff / 1000 / 60 / 60 / 24);
+  diffYear = Math.floor(diff / 1000 / 60 / 60 / 24 / 365)
+  diffDay = Math.floor(diff / 1000 / 60 / 60 / 24) % 365;
   diffHour = Math.floor(diff / 1000 / 60 / 60) % 24;
   diffMinute = Math.floor(diff / 1000 / 60) % 60;
   diffSecond = Math.floor(diff / 1000) % 60;
 
   //text content
+  year.textContent = zeroNeed(diffYear)
   day.textContent = zeroNeed(diffDay) 
   hour.textContent = zeroNeed(diffHour)
   minute.textContent = zeroNeed(diffMinute)
@@ -47,8 +59,23 @@ const countDate = () => {
 countDate();
 
 const changeDate = () => {
+    dayCheck()
     birthday = new Date(`${newYear.value}, ${newMonth.value}, ${newDay.value}`)
     countDate();
+    
+  
 }
 
 btnStart.addEventListener("click", changeDate)
+
+const dayCheck = () => {
+  if (newDay.value > 31){
+    alert("Day can't be more then 31")
+    newDay.value = 31
+  } 
+  if (newMonth.value > 12){
+    alert("Month can't be more then 12")
+    newMonth.value = 12
+    
+  }
+}
