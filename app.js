@@ -9,12 +9,10 @@ const newMonth = document.querySelector("#month")
 const newYear = document.querySelector("#year")
 const btnStart = document.querySelector(".start")
 
-
 let currentDate = new Date()
-let birthday = new Date("February 23, 2023 09:00:00");
+let birthday// = new Date("February 23, 2023 09:00:00")
 
 let interval;
-
 let diffYear;
 let diffDay;
 let diffHour;
@@ -34,7 +32,6 @@ const timeCount = () => {
   } else {
     diff = new Date - birthday
   }
-
   
   //time count
   diffYear = Math.floor(diff / 1000 / 60 / 60 / 24 / 365)
@@ -56,26 +53,37 @@ const countDate = () => {
   interval = setInterval(timeCount, 1000);
 };
 
-countDate();
-
-const changeDate = () => {
-    dayCheck()
-    birthday = new Date(`${newYear.value}, ${newMonth.value}, ${newDay.value}`)
-    countDate();
-    
-  
-}
-
-btnStart.addEventListener("click", changeDate)
-
 const dayCheck = () => {
+
   if (newDay.value > 31){
     alert("Day can't be more then 31")
     newDay.value = 31
   } 
+
   if (newMonth.value > 12){
     alert("Month can't be more then 12")
     newMonth.value = 12
-    
   }
 }
+
+const changeDate = () => {
+    dayCheck()
+    birthday = new Date(`${newYear.value}, ${newMonth.value}, ${newDay.value}`)
+    localStorage.setItem("birthday", birthday);
+    countDate();
+}
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("birthday") === null){
+    birthday = new Date("February 23, 2023 09:00:00")
+    
+  } else {
+    birthday = new Date(localStorage.getItem("birthday"))
+    console.log(birthday)
+  }
+})
+
+countDate();
+btnStart.addEventListener("click", changeDate)
+
+
